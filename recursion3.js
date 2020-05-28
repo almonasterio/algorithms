@@ -58,3 +58,57 @@ function capitalizeWords2(array) {
     return res;
 
 }
+
+function stringifyNumbers(e) {
+    if (typeof e === "object") {
+        for (let key in e) {
+            e[key] = (typeof e[key] === "number") ? e[key].toString() : e[key];
+            stringifyNumbers(e[key]);
+        }
+    }
+    return e
+}
+
+function stringifyNumbers(obj) {
+    var newObj = {};
+    for (var key in obj) {
+        if (typeof obj[key] === 'number') {
+            newObj[key] = obj[key].toString();
+        } else if (typeof obj[key] === 'object' && !Array.isArray(obj[key])) {
+            newObj[key] = stringifyNumbers(obj[key]);
+        } else {
+            newObj[key] = obj[key];
+        }
+    }
+    return newObj;
+}
+
+function collectStrings(e) {
+    let array = [];
+    for (let key in e) {
+        if (typeof e[key] === 'object') {
+            return array.concat(collectStrings(e[key]))
+        } else if (typeof e[key] === 'string') {
+            array.push(e[key]);
+        }
+    }
+    return array;
+}
+
+function collectStrings2(obj) {
+    var stringsArr = [];
+
+    function gatherStrings(o) {
+        for (var key in o) {
+            if (typeof o[key] === 'string') {
+                stringsArr.push(o[key]);
+            } else if (typeof o[key] === 'object') {
+                return gatherStrings(o[key]);
+            }
+        }
+    }
+
+    gatherStrings(obj);
+
+    return stringsArr;
+}
