@@ -112,3 +112,4 @@ function collectStrings2(obj) {
 
     return stringsArr;
 }
+
