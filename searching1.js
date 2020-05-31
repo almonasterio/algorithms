@@ -24,3 +24,15 @@ function binarySearch(arr, val) {
     }
     return arr[middle] == val ? middle : -1;
 }
+
+function naiveSearch(long, short) {
+    let count = 0;
+    for (let i = 0; i <= long.length - short.length; i++) {
+        let inThere = true;
+        for (let j = 0; j < short.length; j++) {
+            if (short[j] !== long[i + j]) inThere = false;
+        }
+        if (inThere) count++
+    }
+    return count
+}
