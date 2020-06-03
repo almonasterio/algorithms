@@ -64,3 +64,43 @@ function pivotHelper(arr, start = 0, end = arr.length - 1) {
 }
 
 quickSort([55, 5, 7, 11, 88, 100, 1, 2, 6, 11, 23, 65, 99]);
+
+
+
+
+//Radix Sort
+
+function radixSort(arr) {
+    max = maxDigit(arr);
+
+    for (let i = 0; i < max; i++) {
+        let array = new Array(10).fill().map(e => [])
+        for (let j = 0; j < arr.length; j++) {
+            let pos = getDigit(arr[j], i);
+            array[pos] = array[pos].concat(arr[j]);
+        }
+        arr = array.flat();
+    }
+    return arr;
+
+}
+
+
+function getDigit(num, i) {
+    return Math.floor(Math.abs(num) / Math.pow(10, i)) % 10;
+}
+
+function maxDigit(arr) {
+    let max = 0;
+    for (let i = 0; i < arr.length; i++) {
+        max = Math.max(max, digitCount(arr[i]));
+    }
+    return max
+}
+
+function digitCount(num) {
+    if (num == 0) return 1;
+    return Math.floor(Math.log10(Math.abs(num))) + 1
+}
+
+radixSort([55, 5, 7, 11, 88, 100, 1, 2, 6, 11, 23, 65, 99]);
