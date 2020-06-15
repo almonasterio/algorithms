@@ -24,4 +24,24 @@ class SingleList {
         return this;
 
     }
+        pop() {
+            if (!this.length) return undefined;
+            else {
+                var current = this.head;
+                var newTail = current;
+                while (current.next) {
+                    newTail = current;
+                    current = current.next;
+                }
+                this.tail = newTail;
+                this.tail.next = null;
+                this.length--;
+                if (this.length === 0) {
+                    this.tail = null;
+                    this.head = null;
+                }
+                return current;
+            }
+        }
+        
 }
