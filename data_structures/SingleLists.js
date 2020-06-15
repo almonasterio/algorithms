@@ -43,5 +43,15 @@ class SingleList {
                 return current;
             }
         }
+         shift() {
+             if (!this.length) return undefined;
+             let currentHead = this.head;
+             this.head = currentHead.next;
+             this.length--;
+             return currentHead;
+
+
+
+         }
         
 }
