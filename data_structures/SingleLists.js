@@ -49,9 +49,35 @@ class SingleList {
              this.head = currentHead.next;
              this.length--;
              return currentHead;
-
-
-
          }
+             unshift(val) {
+                 let newNode = new Node(val);
+                 if (!this.head) {
+                     this.head = newNode;
+                     this.tail = newNode;
+                 }
+                 newNode.next = this.head;
+                 this.head = newNode;
+                 this.length++;
+                 return this;
+             }
+             
+             get(index){
+                 if (index<0 || index>=this.length) return null;
+                 let count=0;
+                 let nodeToGet =this.head;
+                while (count!==index){
+                    nodeToGet=nodeToGet.next;
+                    count++;
+                }
+                return nodeToGet;
+             }
+            set(pos, value){
+                let nodeInPos=this.get(pos);
+                if (!nodeInPos) return false;
+                nodeInPos.val=value;
+                return true;
+
+            }
         
 }
