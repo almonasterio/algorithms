@@ -79,5 +79,41 @@ class SingleList {
                 return true;
 
             }
+            insert(index, value) {
+                if (index < 0 || index > this.length) return false;
+                if (index == this.length) return this.push(value);
+                if (index == 0) return this.unshift(value);
+                let newNode = new Node(value);
+                let preNode = this.get(index - 1);
+                let placeholder = preNode.next;
+                preNode.next = newNode;
+                newNode.next = placeholder;
+                this.length++;
+                return true;
+            }
+            remove(index){
+                if (index < 0 || index >= this.length) return undefined;
+                if (index == this.length-1) return this.pop();
+                if (index == 0) return this.shift();
+                let nodeToRemove= this.get(index);
+                let preNode = this.get(index - 1);
+                preNode.next=nodeToRemove.next;
+                this.length--;
+                return nodeToRemove;
+            }
+            reverse(){
+                let node=this.head;
+                [this.tail,this.head]=[this.head,this.tail];
+                let next;
+                let prev=null;
+               
+               for (let i=0; i<this.length;i++){
+                   next=node.next;
+                   node.next=prev;
+                   prev=node;
+                   node=next;
+               }
+
+            }
         
 }
