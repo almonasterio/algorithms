@@ -212,5 +212,18 @@ class DoubleLinkedList {
                    this.length++;
                    return true;
                }
+                   remove(index) {
+                       if (index < 0 || index >= this.length) return undefined;
+                       if (index == 0) return this.shift();
+                       if (index == this.length - 1) return this.pop();
+                       let nodeDeleted = this.get(index);
+                       let nodeBefore = nodeDeleted.prev;
+                       let nodeAfter = nodeDeleted.next;
+                       nodeBefore.next = nodeAfter, nodeAfter.prev = nodeBefore;
+                       nodeDeleted.prev = null;
+                       nodeDeleted.next = null;
+                       this.length--;
+                       return nodeDeleted;
+                   }
            }
 }
