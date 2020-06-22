@@ -63,7 +63,7 @@ class BinarySearchTree {
          }
          return data;
      }
-      DFS() {
+      DFSPreOrder() {
           let data = [];
           let current = this.root;
           let helperFunction = (node) => {
@@ -72,8 +72,35 @@ class BinarySearchTree {
                 if (node.right) helperFunction(node.right);
 
           }
+             helperFunction(current);
           return data;
       }
+       DFSPostOrder() {
+           let data = [];
+           let current = this.root;
+           let helperFunction = (node) => {
+               
+               if (node.left) helperFunction(node.left);
+               if (node.right) helperFunction(node.right);
+               data.push(node.val);
+
+           }
+              helperFunction(current);
+           return data;
+       }
+        DFSInOrder() {
+            let data = [];
+            let current = this.root;
+            let helperFunction = (node) => {
+
+                if (node.left) helperFunction(node.left);
+                data.push(node.val);
+                if (node.right) helperFunction(node.right);
+
+            }
+            helperFunction(current);
+            return data;
+        }
 
 }
 
