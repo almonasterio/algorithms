@@ -23,4 +23,19 @@ class Graph{
         delete this.adjacentList[vertex];
 
     }
+    depthFirstRecursive(vertex) {
+        let resultList = [];
+        let visited = {};
+        let adjacentList = this.adjacentList;
+        (function dfs(vertex) {
+            if (!vertex) return null;
+            visited[vertex] = true;
+            resultList.push(vertex);
+            adjacentList[vertex].forEach(e => {
+                if (!visited[e]) return dfs(e);
+            })
+        })(vertex);
+        return resultList;
+
+    }
 }
